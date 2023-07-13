@@ -1,0 +1,272 @@
+---
+title: Final Quiz
+author:
+  - Xie zejian
+bibliography: references.bib
+date: "Last compiled on `r format(Sys.time(), '%H:%M, %d %B, %Y')`"
+output:
+  bookdown::pdf_document2:
+    toc: false
+    includes:
+      in_header: preamble.tex
+    latex_engine: xelatex
+    keep_tex: true
+    number_sections: false
+---
+
+
+::: {.lemma #mart name=""}
+
+Process
+$$
+S_{t}=S_0 \exp \left\{ \int_{0}^{t} \sigma_{s}dB_{s}-\int_{0}^{t} \frac{1}{2}\sigma^2_{s} ds  \right\}
+$$
+is a martingale.
+
+:::
+
+
+:::: {.proof}
+
+Let $X_{t}=\int_{0}^{t} \sigma_{s}dB_{s}-\int_{0}^{t} \frac{1}{2}\sigma^2_{s} ds$, we have
+$$
+\begin{cases}
+    dX_{t}&= \sigma_{t}dB_{t}-\frac{1}{2}\sigma^2_{t}dt \\
+    dX_{t}dX_{t}&=\sigma^2_{t}dB_{t}dB_{t}=\sigma^2_{t}dt
+\end{cases}
+$$
+Let $f(x)=S_0 e^{x}$, by Ito-Doeblin formula:
+$$
+\begin{aligned}
+   dS_{t}&=f'(X_{t})dX_{t}+\frac{1}{2}f''(X_{t})dX_{t}dX_{t}
+   \\ &= 
+   S_0e^{X_{t}}dX_{t}+\frac{1}{2}S_0 e^{X_{t}}dX_{t}dX_{t}
+   \\ &= 
+   \sigma_{t}S_{t}dB_{t}
+\end{aligned}
+$$
+thus $S_{t}$ is martingale by theorem II.20 [@protter2005stochastic].
+
+::::
+
+
+
+
+
+::: {.lemma #normal name=""}
+
+For deterministic function $\Delta(s)$,
+$$
+I(t):= \int _{0}^{t} \Delta(s)d B_{s} \sim \mathcal{N}\left( 0, \int _{0}^{t} \Delta^2(s)ds \right)
+$$
+
+
+:::
+
+
+
+::: {.proof}
+
+As $I(t)$ is martingale, we have $\mathop{{}\mathbb{E}}_{}I(t)=\mathop{{}\mathbb{E}}_{}I(0)=0$, and by Ito's isometry:
+$$
+\mathop{\text{Var}}I(t)=\mathop{{}\mathbb{E}}_{}I^2(t)=\int_{0}^{t} \Delta^2(s)ds 
+$$
+There is remain to show it's normally distributed, $\text{ i.e. }$,
+$$
+\mathop{{}\mathbb{E}}_{}e^{uI(t)}= \exp \left\{  \frac{1}{2} u^2 \int_{0}^{t} \Delta^2(s)ds   \right\}
+$$
+that is
+$$
+\mathop{{}\mathbb{E}}_{}\exp \left\{ \int_{0}^{t} u \Delta(s)dB_{s}-  \frac{1}{2}  \int_{0}^{t} \left[ u\Delta(s)\right]^2ds   \right\}=1
+$$
+by lemma \@ref(lem:mart), 
+
+$$
+\exp \left\{ \int_{0}^{t} u \Delta(s)dB_{s}-  \frac{1}{2}  \int_{0}^{t} \left[ u\Delta(s)\right]^2ds   \right\}
+$$
+is martingale, and it's start with $1$ clearly, this completes the proof.
+
+
+
+:::
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+
+::: {.solution}
+
+By Ito-Doeblin formula in integral form, take $f=x \mapsto \frac{1}{2}x^2$:
+$$
+\begin{aligned}
+    \frac{1}{2}B_{t}^2=f(B_{t})-f(B_0)&=\int_{0}^{t} f'(B_{s})dB_{s}+\frac{1}{2} \int _{0}^{t} f''(B_{s})ds
+    \\ &=  \int_{0}^{t} B_{s} dB_{s}+\frac{t}{2}
+\end{aligned}
+$$
+thus
+$$
+\int_{0}^{t} B_{s}dB_{s}=\frac{1}{2}B_{t}^2-\frac{t}{2}
+$$
+
+:::
+
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+By theorem II.39[@protter2005stochastic], $X_{t}$ is a Brownian motion.
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}_{s}\exp \left\{ iuX_{t}+ \frac{u^2t}{2} \right\}
+    &=
+    \mathop{{}\mathbb{E}}_{s} \left[ \exp \left\{ iu(X_{t}-X_{s}) \right\} \cdot \exp \left\{ iuX_{s}+\frac{u^2t}{2} \right\} \right]
+    \\ &= 
+    \exp \left\{ iuX_{s}+\frac{u^2t}{2} \right\}\cdot\mathop{{}\mathbb{E}}_{s} \left[ \exp \left\{ iu(X_{t}-X_{s}) \right\} \right]
+    \\ &= 
+    \exp \left\{ iuX_{s}+\frac{u^2t}{2} \right\}\cdot\mathop{{}\mathbb{E}}_{} \left[ \exp \left\{ iu(X_{t}-X_{s}) \right\} \right] \text{(Stationary increments)}
+    \\ &= 
+    \exp \left\{ iuX_{s}+\frac{u^2t}{2} \right\}\cdot\mathop{{}\mathbb{E}}_{} \left[ \exp \left\{ iu \mathfrak{Z} \sqrt{t-s} \right\} \right]
+    \\ &= 
+    \exp \left\{ iuX_{s}+\frac{u^2t}{2} \right\} \exp \left\{ -\frac{u^2(t-s)}{2} \right\} \text{(MGF of normal distribution)}
+    \\ &= 
+    \exp \left\{ iuX_{s}+\frac{u^2s}{2} \right\}     
+\end{aligned}
+$$
+The integrability follows from $X_{t}$ is Brownian motion:
+$$
+\mathop{{}\mathbb{E}}_{}\exp \left\{ iuX_{t}+ \frac{u^2t}{2} \right\}= \frac{u^2t}{2} \mathop{{}\mathbb{E}}_{}\exp \left\{ iuX_{t} \right\}=\frac{u^2t-u^2t}{2}=0
+$$
+this completes the proof.
+
+:::
+
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+Let $Y_{t}=X_0+\sigma \int_{0}^{t} e^{\alpha s} d B_{s}$, we have
+$$
+\begin{cases}
+    dY_{t} &= \sigma e^{\alpha t}dB_{t} \\
+    dY_{t}dY_{t} &= \sigma^2 e^{2\alpha t}dt \\
+\end{cases}
+$$
+Let $X_{t}=f(t,Y_{t})=e^{-\alpha t}Y_{t}$, $f_{t}(t,Y_{t})=- \alpha e^{-\alpha t}Y_{t},f_{x}=e^{-\alpha t},f_{xx}=0$, Ito-Doeblin formula yields,
+$$
+\begin{aligned}
+    dX_{t}&=-\alpha  e^{-\alpha t}  Y_{t}dt+e^{-\alpha t}dY_{t}
+    \\ &= 
+    -\alpha X_{t}dt+\sigma dB_{t}
+\end{aligned}
+$$
+
+:::
+
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+:::: {.solution}
+
+By lemma \@ref(lem:normal), take $\Delta(s)=s$, we have
+$$
+\int_{0}^{t} s^2ds=\frac{1}{3}
+$$
+then the claim follows.
+
+::::
+
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+a. Let $f(t,x)=e^{\beta t}x$, by Ito-Doeblin formula:
+$$
+\begin{aligned}
+    d (e^{\beta t}R_{t}) &= df(t,R_{t}) = \beta e^{\beta t} R_{t}dt+e^{\beta t} 
+    \left[ \left( \alpha - \beta R_{t} \right)dt+\sigma \sqrt{R_{t}}dB_{t} \right]
+    \\ &= 
+    \alpha e^{\beta t}dt+\sigma e^{\beta t}\sqrt{R_{t}}dB_{t}
+\end{aligned}
+$$
+Integrate each sides:
+$$
+\begin{aligned}
+    e^{\beta t}R_{t} &= R_0+ \frac{\alpha}{\beta} (e^{\beta t}-1)+\sigma \int_{0}^{t}  e^{\beta s}\sqrt{R_{s}} dB_{s} 
+\end{aligned}
+$$
+As Integration $\text{ w.r.t } B_{t}$ is martingale and thus have zero expectation:
+$$
+e^{\beta t} \mathop{{}\mathbb{E}}_{}R_{t}=R_0+\frac{\alpha}{\beta} (e^{\beta t}-1)
+$$
+that is
+$$
+\mathop{{}\mathbb{E}}_{}R_{t}=e^{-\beta t} r_0+ \frac{\alpha(1-e^{-\beta t})}{\beta}
+$$
+
+b. Let $X_{t}=e^{\beta t}R_{t}$, we already have
+$$
+dX_{t}=
+\alpha e^{\beta t}dt+\sigma e^{\beta t}\sqrt{R_{t}}dB_{t}
+=
+\alpha e^{\beta t}dt+\sigma e^{\frac{\beta t}{2}}\sqrt{X_{t}}dB_{t}
+$$
+and
+$$
+\mathop{{}\mathbb{E}}_{}X_{t}=r_0+\frac{\alpha}{\beta} (e^{\beta t}-1)
+$$
+Let $f(X)=x^2$, Ito-Doeblin formula yields:
+$$
+d(X^2(t))=2\alpha e^{\beta t} X_{t} dt+2\sigma e^{\frac{\beta t}{2}}X^{\frac{3}{2}}_{t}dB_{t}+\sigma^2e^{\beta t}X_{t}dt
+$$
+Integrate each sides, we have
+$$
+X^2_{t}=X^2_{0}+(2\alpha+\sigma^2)\int_{0}^{t} e^{\beta s}X_{s}ds+2\sigma \int_{0}^{t} e^{\frac{\beta s}{2}}X^{\frac{3}{2}}_{s}dW_{s}
+$$
+Take expectation each sides:
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}_{}X^2 &= X^2_{0}+(2\alpha +\sigma^2)\int_{0}^{t} e^{\beta s}\mathop{{}\mathbb{E}}_{}X_{s}ds \text{ (Fubini's theorem)}
+    \\ &= 
+    r_0^2+(2\alpha+\sigma^2 ) \int_{0}^{t} e^{\beta s} \left[ r_0+\frac{\alpha(e^{\beta s}-1)}{\beta} \right]ds 
+\end{aligned}
+$$
+Then we can derivate $\mathop{\text{Var}}R_{t}$ by
+$$
+\begin{aligned}
+    \mathop{\text{Var}}R_{t}&=\mathop{{}\mathbb{E}}_{}R^2_{t}-(\mathop{{}\mathbb{E}}_{}R_{t})^2=e^{-2\beta t} \mathop{{}\mathbb{E}}_{}X^2_{t}
+    \\ &= 
+    \frac{\sigma^2r_0}{\beta}(e^{-\beta t}-e^{-2\beta t})+\frac{\alpha \sigma^2}{2\beta^2} (1-2e^{-\beta t}+e^{-2\beta t})
+\end{aligned}
+$$
+
+:::
+
+
+# Reference {-}

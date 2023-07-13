@@ -1,0 +1,5 @@
+book_filename: "Fincial Modeling Analysis"
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "

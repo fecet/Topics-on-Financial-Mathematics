@@ -1,0 +1,226 @@
+---
+title: Homework 3
+author:
+  - Xie zejian
+bibliography: references.bib
+date: "Last compiled on `r format(Sys.time(), '%H:%M, %d %B, %Y')`"
+output:
+  bookdown::pdf_document2:
+    toc: false
+    includes:
+      in_header: preamble.tex
+    latex_engine: xelatex
+---
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+::: {.solution} 
+
+Let $\tau_{z}=\inf \left\{ s>0:Z_{t}\ge z \right\}$. Then $\tau_{z}$ is a stopping time and $\mathop{{}\mathbb{P}}\left\{  \tau<\infty \right\}=1$. Suppose coordinate map $\omega(t)=Z_{t}(\omega)$. Let $R=\inf \left\{ s<t:Z_{s}\ge z \right\}$ and
+$$
+Y_{s}(\omega)=\begin{cases}
+    1 & s\le t , \omega(t-s)<z-y \\
+    0, \text{otherwise} 
+\end{cases}
+,
+Y'_{s}(\omega)=\begin{cases}
+    1 & s\le t , \omega(t-s)>z-y \\
+    0, \text{otherwise} 
+\end{cases}
+$$
+hence
+$$
+Y_{R}\circ \theta_{R}(\omega)=\begin{cases}
+    1 & R\le t , Z_{t}<z-y \\
+    0, \text{otherwise} 
+\end{cases}
+,
+Y'_{R}\circ \theta_{R}(\omega)=\begin{cases}
+    1 & R\le t , Z_{t}>z-y \\
+    0, \text{otherwise} 
+\end{cases}
+$$
+Strong Markov property implies that on $\left\{ R<\infty \right\}$,
+$$
+\mathop{{}\mathbb{E}}_{0}(Y_{R}\circ \theta_{R} | \mathcal{F}_{R})=\mathop{{}\mathbb{E}}_{Z_{R}}Y_{R}, 
+\mathop{{}\mathbb{E}}_{0}(Y'_{R}\circ \theta_{R} | \mathcal{F}_{R})=\mathop{{}\mathbb{E}}_{Z_{R}}Y'_{R}, 
+$$
+since $Z_{R}\ge z$ and $Z$ is symmetric,
+$$
+\mathop{{}\mathbb{E}}_{a}Y_{s}=\mathop{{}\mathbb{E}}_{a}\bm{1}_{Z_{t-s}<z-y}<\mathop{{}\mathbb{E}}_{a}\bm{1}_{Z_{t-s}>z+y}=\mathop{{}\mathbb{E}}_{a}Y_{s}'
+$$
+By taking expectation,
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{P}}\left\{ \tau_{z}\le t,Z_{t}<z-y \right\}&=
+    \mathop{{}\mathbb{E}}_{}\left( \mathop{{}\mathbb{E}}_{Z_{R}}Y_{R}:R<\infty \right)
+    \\&\le 
+    \mathop{{}\mathbb{E}}_{}\left( \mathop{{}\mathbb{E}}_{Z_{R}}Y'_{R}:R<\infty \right)
+    \\ &= 
+    \mathop{{}\mathbb{E}}_{}\left( \mathop{{}\mathbb{E}}_{0}Y'_{R}\circ \theta_{R} | \mathcal{F}_{R} \right)
+    \\ &= 
+    \mathop{{}\mathbb{P}}_{0}\left\{ \tau_{z}\le t,Z_{t}>z+y \right\}
+    \\ &= 
+    \mathop{{}\mathbb{P}}\left\{ Z_{t}>z+y \right\}     
+\end{aligned}
+$$
+
+
+:::
+
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+Define $\tau_{z},R$ and $\omega(t)$ the same way in last exercise and let
+
+$$
+Y_{s}(\omega)=\begin{cases}
+    1 & s\le t , \omega(t-s)>z \\
+    0 &\text{otherwise} 
+\end{cases}
+$$
+Since $Z_{R}\ge z$ and $Z$ is symmetric,
+$$
+\mathop{{}\mathbb{E}}_{a}Y_{s}=\mathop{{}\mathbb{E}}_{a}\bm{1}_{\left\{ Z_{t-s}\ge z \right\}}\ge \frac{1}{2}, \forall a\ge z,s<t
+$$
+take expectation yield
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{P}}_{0}\left\{ Z_{t}\ge z \right\}&=\mathop{{}\mathbb{P}}_{0}\left\{ \tau_{z}\le t,Z_{t}\ge z \right\}
+    \\ &= 
+    \mathop{{}\mathbb{E}}_{}\left( \mathop{{}\mathbb{E}}_{0} \left( Y_{R} \circ \theta_{R}| \mathcal{F}_{R} \right):R<\infty \right)
+    \\ &= 
+    \mathop{{}\mathbb{E}}_{}(\mathop{{}\mathbb{E}}_{Z_{R}Y_{R}}:R<\infty) \\
+    &\ge \mathop{{}\mathbb{E}}_{}\left( \frac{1}{2}:R<\infty \right)=\frac{1}{2} \mathop{{}\mathbb{P}}\left\{ S_{t}\ge z \right\}
+\end{aligned}
+$$
+
+
+:::
+
+
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+By DCT,
+$$
+\lim_{n \to \infty} \mathop{{}\mathbb{E}}^{\mathbb{Q}} \left( \left| X_n-X \right|\land 1 \right)=\lim_{n \to \infty} \mathop{{}\mathbb{E}}_{}^{\mathop{{}\mathbb{P}}} \left( \left| X_n-X \right|\land 1 \cdot \frac{d \mathbb{Q}}{d \mathop{{}\mathbb{P}}} \right)=0
+$$
+$\left| X_n-X \right|\land 1 \to 0 \in L^{1}(Q)$ implies $X_n\to X$ in $\mathbb{Q}$-probability.
+
+:::
+
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+$B_{t}$ is continuous local martingale, then
+$$
+[B,B]_{t}=\alpha^2 [X,X]_{t}+(1-\alpha^2)[Y,Y]_{t}=t
+$$
+as $X$ and $Y$ are independent, then by Levy theorem, $B$ is a standard Brownian motion:
+$$
+[X,B]_{t}=\alpha t, [Y,B]_{t}=\sqrt{1-\alpha^2}t
+$$
+
+
+
+:::
+
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+Assume $f(0)=0$, let $M_{t}=B_{f(t)}$ filtered by $\mathcal{G}_{t}=\mathcal{F}_{f(t)}$, where $B$ is standard Brownian motion filtered by $\mathcal{F}_{t}$, then
+$$
+\mathop{{}\mathbb{E}}_{\mathcal{G}_{s}} M_{t}=\mathop{{}\mathbb{E}}_{\mathcal{F}_{f(s)}}B_{f(t)}=B_{f(s)}=M_{s}
+$$
+hence $M_{t}$ is a martingale and continuous clearly. Finally,
+$$
+[M,M]_{t}=[B,B]_{f(t)}=f(t)
+$$
+If $f(0)>0$, we can add a constant process $A_{t}$ to $B_{f(t)}$ $\text{ s.t. }$
+$$
+2A_{t}M_0+A_{t}^2=-B_0^2
+$$
+to get desired result.
+
+
+:::
+
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+$M$ is continuous as so is $B$, $M$ is local martingale since $B$ is locally square integrable local martingale.
+$$
+[M,M]_{t}=\int _{0}^{t} H^2_{s} ds=t
+$$
+so $M$ is Brownian motion by Levy's characterization theorem.
+
+:::
+
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+Note
+$$
+[X^{n},Z]=[H^{n},Y\cdot Z]=H^{n}\cdot [Y,Z]
+$$
+and
+$$
+[X,Z]=[H,Y\cdot Z]=H \cdot [Y,Z ]
+$$
+and $[Y,Z]$ is a semimartingale. Then by continuity of Stochastic integral, $H^{n}\to H$ in ucp implies $H^{n}\cdot [Y,Z]\to  H\cdot [Y,Z ]$ and hence
+$$
+[X^{n},Z]\to  [XZ]
+$$
+in ucp
+
+
+:::
+

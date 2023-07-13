@@ -1,0 +1,336 @@
+---
+title: Homework 1
+author:
+  - Xie zejian
+bibliography: references.bib
+date: "Last compiled on `r format(Sys.time(), '%H:%M, %d %B, %Y')`"
+output:
+  bookdown::pdf_document2:
+    toc: false
+    includes:
+      in_header: preamble.tex
+    latex_engine: xelatex
+---
+
+```{r, setup, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE,
+                            message=FALSE,
+                            echo=TRUE, 
+                            fig.width=8)
+## collapse = TRUE
+# dec = 'jpeg'
+# eval = FALSE
+# https://yihui.org/knitr/options/#chunk-options
+
+```
+
+
+::: {.lemma  name=""}
+
+$\sigma$ algebra $\mathcal{A}$ can be seen as collection of numerical $\mathcal{A}$ measurable function, formerly,
+$$
+\mathcal{A}=\sigma\left\{ f:f \text{ is } \mathcal{A} \text{ meaurable} \right\}=\sigma( \bigcup_{f}\sigma f)
+$$
+
+
+:::
+
+
+:::: {.proof}
+
+Recall that $f$ is $\mathcal{A}$ measurable ($\text{ w.r.t }$ borel $\mathcal{B}$) iff $\sigma f=f^{-1}(\mathcal{B})\subset \mathcal{A}$, thus
+$$
+\sigma( \bigcup_{f}\sigma f) \subset \mathcal{A}
+$$
+On the other hand, for any $A \in \mathcal{A}$, $\bm{1}_{_{A}}$ is measurable and hence:
+$$
+\sigma( \bigcup_{f}\sigma f)\supset \bigcup_{f}\sigma(f)\supset \bigcup_{A\in \mathcal{A}}\sigma(\bm{1}_{A}) = \mathcal{A}
+$$
+then claim follows. 
+
+
+::::
+
+Hence we can write $V \in \mathcal{A}$ to mean $V$ is $\mathcal{A}$ measurable without further comments. 
+
+::: {.lemma  name=""}
+
+$V \in \mathcal{A} \iff \left\{ A\le r \right\}\in \mathcal{A}$ for any $r\in \mathbb{\mathbb{R}}$.
+
+:::
+
+
+:::: {.proof}
+
+$\implies$ is immediately and $\impliedby$ follows from collection of $[-\infty,r]$ generates $\mathcal{B}$.
+
+::::
+
+
+For $\sigma$-algebras on stopping time, we have
+
+
+::: {.theorem #stopping-time-representation name=""}
+
+$V \in \mathcal{F}_{\tau}$ iff $V \bm{1}_{\tau \le t}\in \mathcal{F}_{t}$ for any $t \in \overline{T}$.
+
+:::
+
+
+:::: {.proof}
+
+$$
+\begin{aligned}
+    V\in \mathcal{F}_{\tau}&\iff\left\{ V>r \right\}\in \mathcal{F}_{\tau}
+    \\ &\iff
+    \left\{ V>r \right\}\cap \left\{ \tau \le t \right\} \in \mathcal{F}_{t}, \forall t
+    \\ &\iff 
+    \left\{ V \bm{1}_{\tau\le t}>r \right\}\in \mathcal{F}_{t},\forall t
+    \\ &\iff 
+    V \bm{1}_{\tau \le t}\in \mathcal{F}_{t},\forall t
+\end{aligned}
+$$
+
+::::
+
+Similarly, we abuse $\mathbb{F}$ following collection of process:
+
+1. $X=\{X_{t}\}_{t \in T}$ is adapted to $\mathbb{F}$.
+2. The path $t \mapsto X_{t}(\omega)$ is right continuous for every $\omega \in \Omega$ (RCLL or cadlag).
+
+In such notations, we have the restatement of theorem 6 [@protter2005stochastic]:
+
+::: {.theorem #stopping-time-filtration name=""}
+
+$\mathcal{F}_{\tau}=\left\{ X_{\tau}:X\in \mathbb{F} \right\}$
+
+:::
+
+Combine above theorems:
+
+::: {.theorem #stopping-time-compare name=""}
+
+Let $\sigma$ and $\tau$ be stopping times of $\mathbb{F}$, then 
+
+1.	$\sigma \land \tau$ and $\sigma \lor \tau$ are stopping time of $\mathbb{F}$.
+2.	$\sigma \le \tau \text{ a.s. } \implies \mathcal{F}_{\sigma} \subset \mathcal{F}_{\tau}$
+3.  In general, $\mathcal{F}_{\sigma \land \tau} = \mathcal{F}_{\sigma} \cap \mathcal{F}_{\tau}$
+4.  If $V \in \mathcal{F}_{\sigma}$, then the following are in $\mathcal{F}_{\sigma \land \tau}$:
+    $$
+    V \bm{1}_{\sigma \le \tau}, V \bm{1}_{\sigma=\tau}, V \bm{1}_{\sigma < \tau}
+    $$
+
+:::
+
+
+:::: {.proof}
+
+**1** follows easily by noting
+$$
+\left\{\tau\land \sigma\le t\right\}=\left\{\sigma\le t\right\}\cup \left\{\tau\le t\right\}
+$$
+For **2**, suppose $V \in \mathcal{F}_{\sigma}$, then $X_{t}=V \bm{1}_{\sigma \le t}$ defines a process $X$ adapted to $\mathbb{F}$ by theorem \@ref(thm:stopping-time-representation) and it's right continuous obviously, thus $X \in \mathbb{F}$.
+Then $X_{\tau}\xlongequal{\text{ a.s. }}V \in \mathcal{F}_{\tau}$ by theorem \@ref(thm:stopping-time-filtration) and the claim follows.
+
+To see **3**, we show **4** first. As $\sigma \land \tau$ is stopping time, use $V \in \mathcal{F}_{\sigma}$ in **2**, we have
+$$
+X_{\sigma \land \tau}=V \bm{1}_{\sigma \le \sigma \land \tau}=V \bm{1}_{\sigma \le \tau} \in \mathcal{F}_{\sigma \land \tau}
+$$
+take $V=1$ we have $\{\sigma \le \tau\} \in \mathcal{F}_{\sigma \land \tau}$ and the others follows by symmetry and set operations.
+
+Now let $H \in \mathcal{F}_{\sigma} \cap \mathcal{F}_{\tau}$ and $V=\bm{1}_{H}$, then **4** implies $V=V \bm{1}_{\sigma<\tau}+V \bm{1}_{\tau<\sigma} \in \mathcal{F}_{\sigma \cap \tau}$ and that shows $F_{\sigma} \cap \mathcal{F}_{\tau} \subset \mathcal{F}_{\sigma \land \tau}$. The other direction follows easily by noting $\sigma \land \tau$ are dominated by both $\tau$ and $\sigma$.
+
+::::
+
+
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+See theorem \@ref(thm:stopping-time-compare).2.
+
+:::
+
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+Let $\Omega=\mathbb{N}$, $\mathcal{F}_{n}=\sigma(\left\{ 1 \right\},\left\{ 2 \right\},\dots \left\{ n \right\})$.
+
+Let $S(\omega)=\omega$, $T=3$, then $\left\{ S=n \right\}=\left\{ n \right\}\in \mathcal{F}_{n}$ thus both are stopping time. However,
+$$
+\left\{ T-S=1 \right\}=\left\{ 2 \right\}\notin \mathcal{F}_{1}
+$$
+therefore $T-S$ isn't a stopping time.
+
+:::
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+
+::: {.solution}
+
+- $\sup_n \tau_n$: $\left\{ \sup_{n}\tau_n\le t \right\}=\bigcap_{n}\left\{ \tau_n\le t \right\}\in \mathcal{F}_{t}$
+- $\inf_{n}\tau_n$: $\left\{ \inf _{n}\tau_n<t \right\}=\bigcup_{n}\left\{ \tau_n<t \right\}  \in \mathcal{F}_{t}$
+- $\limsup _{n\to \infty}=\inf _{m}\sup _{n\ge m}\tau_n$
+- $\liminf _{n\to \infty}=\sup _{m}\inf _{n\ge m}\tau_n$
+
+:::
+
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+The first statement is clear by last exercise. By theorem \@ref(thm:stopping-time-compare).3 and monotonicity, we have
+$$
+\begin{aligned}
+    \mathcal{F}_{\tau}&=
+    \mathcal{F}_{\lim_{n \to \infty }\tau_n}
+    =
+    \lim_{n \to \infty }\mathcal{F}_{\land_{i\le n} \tau_i}
+    =
+    \lim_{n \to \infty }\bigcap_{i\le n}\mathcal{F}_{i}
+    = 
+    \bigcap_{n}\mathcal{F}_{n}
+\end{aligned}
+$$
+:::
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+::: {.solution}
+
+Since $X \in L^{p}$, then $X \in L^{1}$
+
+a.
+By Jensen's inequality
+$$
+\mathop{{}\mathbb{E}}_{}\left| M \right|^{p}=\mathop{{}\mathbb{E}}_{}\left| \mathop{{}\mathbb{E}}_{t}X \right|^{p}\le \mathop{{}\mathbb{E}}_{}\mathop{{}\mathbb{E}}_{t}\left| X^{p} \right|=\mathop{{}\mathbb{E}}_{}\left| X \right|^{p}<\infty 
+$$
+b. For $t\ge s\ge 0$,
+$$
+\mathop{{}\mathbb{E}}_{s}M_{t}=\mathop{{}\mathbb{E}}_{s}\mathop{{}\mathbb{E}}_{t}X=\mathop{{}\mathbb{E}}_{s}X=M_{s}
+$$
+thus $M$ is a martingale. For the continuity, Jensen's inequality yields: $\forall p>1$:
+$$
+\mathop{{}\mathbb{E}}_{}\left| M_{t}^{n}-M_{t} \right|^{p} = \mathop{{}\mathbb{E}}_{}\left| \mathop{{}\mathbb{E}}_{t} \left( M^{n}_{\infty}-X \right)\right|^{p}\le \mathop{{}\mathbb{E}}_{}\mathop{{}\mathbb{E}}_{t}\left| M_{\infty}^{n}-X \right|^{p}=\mathop{{}\mathbb{E}}_{}\left| M^{n}_{\infty}-X \right|
+$$
+Take sup:
+$$
+\sup_{t}\mathop{{}\mathbb{E}}_{}\left| M_{t}^{n}-M_{t} \right|\le \mathop{{}\mathbb{E}}_{}\left| M_{\infty}^{n}-X \right|\to 0
+$$
+For any $\varepsilon>0$, we have
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{P}}\left\{ \sup _{t}\left| M_{t}^{n}-M_{t} \right|>\varepsilon \right\}&\le \frac{1}{\varepsilon^{p}}\mathop{{}\mathbb{E}}_{}\sup _{t} \left| M_{t}^{n}-M_{t} \right|^{p} 
+    & (\text{Chebychev's inequality})
+    \\
+    & \le \frac{1}{\varepsilon^{p}} \left( \frac{p}{p-1} \right)^{p} \frac{\sup _{t} \mathop{{}\mathbb{E}}_{}\left| M_{t}^{n}-M_{t} \right|^{p}}{\varepsilon^{p}} & (\text{Doob's inequality})
+    \\
+    & \to  0
+\end{aligned}
+$$
+Thus $M^{n}\to M$ uniformly in probability. As we can select a subsequence uniformly converges to $M$ $\text{ a.s. }$, then $M$ is continuous $\text{ a.s. }$ since it's limit of uniformly continuous paths.
+
+:::
+
+
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+
+::: {.solution}
+
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}_{}\left| N_{t}-\lambda t \right|&=
+    \mathop{{}\mathbb{E}}_{} \left( N_{t}-\lambda t \right)+2 \mathop{{}\mathbb{E}}_{}\left( N_{t}-\lambda t \right)^{-}
+    \\ &= 
+    2 \mathop{{}\mathbb{E}}_{} \left( N_{t}-\lambda t \right)^{-}
+    \\ &= 
+    2 \sum_{n=0}^{\lambda t}(\lambda t-n) e^{-\lambda t}\frac{(\lambda t)^{n}}{n!}
+    \\ &= 2 e^{-\lambda t} \frac{(\lambda t)^{\lambda t}}{(\lambda t-1)!}
+\end{aligned}
+$$
+
+:::
+
+
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+As Poison process has stationery increments, for $t\ge s\ge 0$,
+$$
+\mathop{{}\mathbb{E}}_{}\left( N_{t}-N_{s} \right)^2=\mathop{{}\mathbb{E}}_{}N^2_{t-s}=\mathop{\text{Var}}N_{t-s}+\mathop{{}\mathbb{E}}_{}^2N_{t-s}=\lambda(t-s) \left[ 1+\lambda(t-s) \right]
+$$
+As $s \to t$, that tends to $0$ and the claim follows.
+
+
+:::
+
+
+
+# Reference {-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

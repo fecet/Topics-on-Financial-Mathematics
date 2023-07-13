@@ -1,0 +1,407 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Final Quiz},
+  pdfauthor={Xie zejian},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+%\setmathfont{texgyrepagella-math.otf}
+%\setmathfont{XITSMath-Regular.otf}
+
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{upgreek}
+\usepackage{float}
+\usepackage{extarrows}
+\usepackage{longtable}
+\usepackage{tikz}
+\usepackage{commutative-diagrams}
+\usepackage{authblk}
+\usepackage{letltxmacro}
+
+\DeclareMathOperator{\tr}{Tr}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\deter}{det}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\eig}{eig}
+\DeclareMathOperator{\vect}{vec}
+
+\let\emptyset\varnothing
+
+\renewcommand{\mathbf}[1]{\symbf{#1}}
+\newcommand{\bm}[1]{\symbf{#1}}
+
+
+% \setcounter{section}{+7}
+\author{Xie Zejian\\ 11810105@mail.sustech.edu.cn}
+  \affil{Department of Finance, SUSTech
+      %\\ \href{https://www.cbs.nl}{\texttt{https://www.cbs.nl}} \\
+        }
+
+
+
+\newcommand{\lt}{<}
+\newcommand{\gt}{>}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Reals}{\mathbb{R}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\sub}{\subset}
+\newcommand{\subsets}{\subset}
+\newcommand{\exist}{\exists}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Final Quiz}
+\author{Xie zejian}
+\date{Last compiled on 17:49, 09 January, 2022}
+
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{definition}
+\newtheorem{example}{Example}
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+\theoremstyle{definition}
+\newtheorem{hypothesis}{Hypothesis}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
+\begin{document}
+\maketitle
+
+\begin{lemma}[]
+\protect\hypertarget{lem:mart}{}\label{lem:mart}Process
+\[
+S_{t}=S_0 \exp \left\{ \int_{0}^{t} \sigma_{s}dB_{s}-\int_{0}^{t} \frac{1}{2}\sigma^2_{s} ds  \right\}
+\]
+is a martingale.
+\end{lemma}
+
+\begin{proof}
+Let \(X_{t}=\int_{0}^{t} \sigma_{s}dB_{s}-\int_{0}^{t} \frac{1}{2}\sigma^2_{s} ds\), we have
+\[
+\begin{cases}
+    dX_{t}&= \sigma_{t}dB_{t}-\frac{1}{2}\sigma^2_{t}dt \\
+    dX_{t}dX_{t}&=\sigma^2_{t}dB_{t}dB_{t}=\sigma^2_{t}dt
+\end{cases}
+\]
+Let \(f(x)=S_0 e^{x}\), by Ito-Doeblin formula:
+\[
+\begin{aligned}
+   dS_{t}&=f'(X_{t})dX_{t}+\frac{1}{2}f''(X_{t})dX_{t}dX_{t}
+   \\ &= 
+   S_0e^{X_{t}}dX_{t}+\frac{1}{2}S_0 e^{X_{t}}dX_{t}dX_{t}
+   \\ &= 
+   \sigma_{t}S_{t}dB_{t}
+\end{aligned}
+\]
+thus \(S_{t}\) is martingale by theorem II.20 (Protter 2005).
+\end{proof}
+
+\begin{lemma}[]
+\protect\hypertarget{lem:normal}{}\label{lem:normal}For deterministic function \(\Delta(s)\),
+\[
+I(t):= \int _{0}^{t} \Delta(s)d B_{s} \sim \mathcal{N}\left( 0, \int _{0}^{t} \Delta^2(s)ds \right)
+\]
+\end{lemma}
+
+\begin{proof}
+As \(I(t)\) is martingale, we have \(\mathop{{}\mathbb{E}}_{}I(t)=\mathop{{}\mathbb{E}}_{}I(0)=0\), and by Ito's isometry:
+\[
+\mathop{\text{Var}}I(t)=\mathop{{}\mathbb{E}}_{}I^2(t)=\int_{0}^{t} \Delta^2(s)ds 
+\]
+There is remain to show it's normally distributed, \(\text{ i.e. }\),
+\[
+\mathop{{}\mathbb{E}}_{}e^{uI(t)}= \exp \left\{  \frac{1}{2} u^2 \int_{0}^{t} \Delta^2(s)ds   \right\}
+\]
+that is
+\[
+\mathop{{}\mathbb{E}}_{}\exp \left\{ \int_{0}^{t} u \Delta(s)dB_{s}-  \frac{1}{2}  \int_{0}^{t} \left[ u\Delta(s)\right]^2ds   \right\}=1
+\]
+by lemma \ref{lem:mart},
+
+\[
+\exp \left\{ \int_{0}^{t} u \Delta(s)dB_{s}-  \frac{1}{2}  \int_{0}^{t} \left[ u\Delta(s)\right]^2ds   \right\}
+\]
+is martingale, and it's start with \(1\) clearly, this completes the proof.
+\end{proof}
+
+\begin{exercise}[]
+\(\quad\)
+\end{exercise}
+
+\begin{solution}
+By Ito-Doeblin formula in integral form, take \(f=x \mapsto \frac{1}{2}x^2\):
+\[
+\begin{aligned}
+    \frac{1}{2}B_{t}^2=f(B_{t})-f(B_0)&=\int_{0}^{t} f'(B_{s})dB_{s}+\frac{1}{2} \int _{0}^{t} f''(B_{s})ds
+    \\ &=  \int_{0}^{t} B_{s} dB_{s}+\frac{t}{2}
+\end{aligned}
+\]
+thus
+\[
+\int_{0}^{t} B_{s}dB_{s}=\frac{1}{2}B_{t}^2-\frac{t}{2}
+\]
+\end{solution}
+
+\begin{exercise}[]
+\(\quad\)
+\end{exercise}
+
+\begin{solution}
+By theorem II.39(Protter 2005), \(X_{t}\) is a Brownian motion.
+\[
+\begin{aligned}
+    \mathop{{}\mathbb{E}}_{s}\exp \left\{ iuX_{t}+ \frac{u^2t}{2} \right\}
+    &=
+    \mathop{{}\mathbb{E}}_{s} \left[ \exp \left\{ iu(X_{t}-X_{s}) \right\} \cdot \exp \left\{ iuX_{s}+\frac{u^2t}{2} \right\} \right]
+    \\ &= 
+    \exp \left\{ iuX_{s}+\frac{u^2t}{2} \right\}\cdot\mathop{{}\mathbb{E}}_{s} \left[ \exp \left\{ iu(X_{t}-X_{s}) \right\} \right]
+    \\ &= 
+    \exp \left\{ iuX_{s}+\frac{u^2t}{2} \right\}\cdot\mathop{{}\mathbb{E}}_{} \left[ \exp \left\{ iu(X_{t}-X_{s}) \right\} \right] \text{(Stationary increments)}
+    \\ &= 
+    \exp \left\{ iuX_{s}+\frac{u^2t}{2} \right\}\cdot\mathop{{}\mathbb{E}}_{} \left[ \exp \left\{ iu \mathfrak{Z} \sqrt{t-s} \right\} \right]
+    \\ &= 
+    \exp \left\{ iuX_{s}+\frac{u^2t}{2} \right\} \exp \left\{ -\frac{u^2(t-s)}{2} \right\} \text{(MGF of normal distribution)}
+    \\ &= 
+    \exp \left\{ iuX_{s}+\frac{u^2s}{2} \right\}     
+\end{aligned}
+\]
+The integrability follows from \(X_{t}\) is Brownian motion:
+\[
+\mathop{{}\mathbb{E}}_{}\exp \left\{ iuX_{t}+ \frac{u^2t}{2} \right\}= \frac{u^2t}{2} \mathop{{}\mathbb{E}}_{}\exp \left\{ iuX_{t} \right\}=\frac{u^2t-u^2t}{2}=0
+\]
+this completes the proof.
+\end{solution}
+
+\begin{exercise}[]
+\(\quad\)
+\end{exercise}
+
+\begin{solution}
+Let \(Y_{t}=X_0+\sigma \int_{0}^{t} e^{\alpha s} d B_{s}\), we have
+\[
+\begin{cases}
+    dY_{t} &= \sigma e^{\alpha t}dB_{t} \\
+    dY_{t}dY_{t} &= \sigma^2 e^{2\alpha t}dt \\
+\end{cases}
+\]
+Let \(X_{t}=f(t,Y_{t})=e^{-\alpha t}Y_{t}\), \(f_{t}(t,Y_{t})=- \alpha e^{-\alpha t}Y_{t},f_{x}=e^{-\alpha t},f_{xx}=0\), Ito-Doeblin formula yields,
+\[
+\begin{aligned}
+    dX_{t}&=-\alpha  e^{-\alpha t}  Y_{t}dt+e^{-\alpha t}dY_{t}
+    \\ &= 
+    -\alpha X_{t}dt+\sigma dB_{t}
+\end{aligned}
+\]
+\end{solution}
+
+\begin{exercise}[]
+\(\quad\)
+\end{exercise}
+
+\begin{solution}
+By lemma \ref{lem:normal}, take \(\Delta(s)=s\), we have
+\[
+\int_{0}^{t} s^2ds=\frac{1}{3}
+\]
+then the claim follows.
+\end{solution}
+
+\begin{exercise}[]
+\(\quad\)
+\end{exercise}
+
+\begin{solution}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  Let \(f(t,x)=e^{\beta t}x\), by Ito-Doeblin formula:
+  \[
+  \begin{aligned}
+   d (e^{\beta t}R_{t}) &= df(t,R_{t}) = \beta e^{\beta t} R_{t}dt+e^{\beta t} 
+   \left[ \left( \alpha - \beta R_{t} \right)dt+\sigma \sqrt{R_{t}}dB_{t} \right]
+   \\ &= 
+   \alpha e^{\beta t}dt+\sigma e^{\beta t}\sqrt{R_{t}}dB_{t}
+  \end{aligned}
+  \]
+  Integrate each sides:
+  \[
+  \begin{aligned}
+   e^{\beta t}R_{t} &= R_0+ \frac{\alpha}{\beta} (e^{\beta t}-1)+\sigma \int_{0}^{t}  e^{\beta s}\sqrt{R_{s}} dB_{s} 
+  \end{aligned}
+  \]
+  As Integration \(\text{ w.r.t } B_{t}\) is martingale and thus have zero expectation:
+  \[
+  e^{\beta t} \mathop{{}\mathbb{E}}_{}R_{t}=R_0+\frac{\alpha}{\beta} (e^{\beta t}-1)
+  \]
+  that is
+  \[
+  \mathop{{}\mathbb{E}}_{}R_{t}=e^{-\beta t} r_0+ \frac{\alpha(1-e^{-\beta t})}{\beta}
+  \]
+\item
+  Let \(X_{t}=e^{\beta t}R_{t}\), we already have
+  \[
+  dX_{t}=
+  \alpha e^{\beta t}dt+\sigma e^{\beta t}\sqrt{R_{t}}dB_{t}
+  =
+  \alpha e^{\beta t}dt+\sigma e^{\frac{\beta t}{2}}\sqrt{X_{t}}dB_{t}
+  \]
+  and
+  \[
+  \mathop{{}\mathbb{E}}_{}X_{t}=r_0+\frac{\alpha}{\beta} (e^{\beta t}-1)
+  \]
+  Let \(f(X)=x^2\), Ito-Doeblin formula yields:
+  \[
+  d(X^2(t))=2\alpha e^{\beta t} X_{t} dt+2\sigma e^{\frac{\beta t}{2}}X^{\frac{3}{2}}_{t}dB_{t}+\sigma^2e^{\beta t}X_{t}dt
+  \]
+  Integrate each sides, we have
+  \[
+  X^2_{t}=X^2_{0}+(2\alpha+\sigma^2)\int_{0}^{t} e^{\beta s}X_{s}ds+2\sigma \int_{0}^{t} e^{\frac{\beta s}{2}}X^{\frac{3}{2}}_{s}dW_{s}
+  \]
+  Take expectation each sides:
+  \[
+  \begin{aligned}
+   \mathop{{}\mathbb{E}}_{}X^2 &= X^2_{0}+(2\alpha +\sigma^2)\int_{0}^{t} e^{\beta s}\mathop{{}\mathbb{E}}_{}X_{s}ds \text{ (Fubini's theorem)}
+   \\ &= 
+   r_0^2+(2\alpha+\sigma^2 ) \int_{0}^{t} e^{\beta s} \left[ r_0+\frac{\alpha(e^{\beta s}-1)}{\beta} \right]ds 
+   
+  \end{aligned}
+  \]
+  Then we can derivate \(\mathop{\text{Var}}R_{t}\) by
+  \[
+  \begin{aligned}
+   \mathop{\text{Var}}R_{t}&=\mathop{{}\mathbb{E}}_{}R^2_{t}-(\mathop{{}\mathbb{E}}_{}R_{t})^2=e^{-2\beta t} \mathop{{}\mathbb{E}}_{}X^2_{t}
+   
+   
+   \\ &= 
+   \frac{\sigma^2r_0}{\beta}(e^{-\beta t}-e^{-2\beta t})+\frac{\alpha \sigma^2}{2\beta^2} (1-2e^{-\beta t}+e^{-2\beta t})
+  \end{aligned}
+  \]
+\end{enumerate}
+
+\end{solution}
+
+\hypertarget{reference}{%
+\section*{Reference}\label{reference}}
+\addcontentsline{toc}{section}{Reference}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\vadjust pre{\hypertarget{ref-protter2005stochastic}{}}%
+Protter, Philip E. 2005. \emph{Stochastic Differential Equations}. Springer.
+
+\end{CSLReferences}
+
+\end{document}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{}
+    \caption{}
+    \label{fig:}
+    f
+\end{figure}
+

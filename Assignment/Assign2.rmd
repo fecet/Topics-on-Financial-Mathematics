@@ -1,0 +1,182 @@
+---
+title: Homework 2
+author:
+  - Xie zejian
+bibliography: references.bib
+date: "Last compiled on `r format(Sys.time(), '%H:%M, %d %B, %Y')`"
+output:
+  bookdown::pdf_document2:
+    toc: false
+    includes:
+      in_header: preamble.tex
+    latex_engine: xelatex
+---
+
+
+::: {.theorem #levy-Khinchin name="Lévy-Khintchine Formula"}
+
+Let $X$ be a Levy process in $\mathbb{R}^{d}$, there uniquely exist a triplet $(\bm{A},\gamma,\nu)$ of
+$$
+\begin{cases}
+    \bm{A}&\in \mathbb{R}^{d\times d}\ge 0\\
+    \gamma& \in \mathbb{R}^{d}\\
+    \nu & \text{a Lévy measure on } \mathbb{R}^{d}
+\end{cases}
+$$
+determine the process $X$, that is, $\mathop{{}\mathbb{E}}_{}e^{i \bm{u'} X_{t}}=e^{-t \psi(\bm{u})}$, where
+$$
+\psi(\bm{u})=\frac{1}{2} \left\langle \bm{u},\bm{Au} \right\rangle- i \left\langle \bm{u},\bm{\gamma} \right\rangle+\int_{\mathbb{R}^{d}} \left(1+ \bm{1}_{\left| x \right|\le 1}i \left\langle \bm{u},\bm{x} \right\rangle -e^{i\left\langle \bm{u},\bm{x} \right\rangle} \right) \nu(d \bm{x})
+$$
+If $\bm{\gamma_0}=\bm{\gamma}-\int_{\left| \bm{x} \right|\le 1} d\nu$ is well-defined and finite,the we can rewrite above formula by $(\bm{A},\gamma_0,\nu)_{0}$:
+$$
+\psi(\bm{u})=\frac{1}{2} \left\langle \bm{u},\bm{Au} \right\rangle- i \left\langle \bm{u},\bm{\gamma_0} \right\rangle+\int_{\mathbb{R}^{d}} \left(1 -e^{i\left\langle \bm{u},\bm{x} \right\rangle} \right) \nu(d \bm{x})
+$$
+
+If $\bm{\gamma_1}=\bm{\gamma}+\int_{\left| \bm{x} \right|> 1} d\nu$ is well-defined and finite,the we can rewrite above formula by $(\bm{A},\gamma_1,\nu)_{1}$:
+$$
+\psi(\bm{u})=\frac{1}{2} \left\langle \bm{u},\bm{Au} \right\rangle- i \left\langle \bm{u},\bm{\gamma_1} \right\rangle+\int_{\mathbb{R}^{d}} \left(1 -e^{i\left\langle \bm{u},\bm{x} \right\rangle}+i \left\langle \bm{u},\bm{x} \right\rangle  \right) \nu(d \bm{x})
+$$
+
+
+:::
+
+
+
+::: {.exercise  name="11"}
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+Since $\mathop{{}\mathbb{E}}_{}e^{i  u Z_{t}}=e^{-t \psi(u)}$ and $\psi(u)=\int (1-e^{iux})\nu(dx)$, $Z_{t}$ is Lévy process with generating triplet $(0,0,\nu)_{0}$ and $d=1$ in theorem \@ref(thm:levy-Khinchin).
+
+:::
+
+
+
+::: {.exercise  name="12"}
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+As compound Poisson process is Levy and thus for $t\ge s$
+$$
+\mathop{{}\mathbb{E}}_{s}Z_{t}=\mathop{{}\mathbb{E}}_{s}\left( Z_{t}-Z_{s}+Z_{s} \right)=Z_{s}+\mathop{{}\mathbb{E}}_{}Z_{t-s}
+$$
+and Wald's equation yields
+$$
+\mathop{{}\mathbb{E}}_{}Z_{t}=\mathop{{}\mathbb{E}}_{}N_{t}\mathop{{}\mathbb{E}}_{}U_1=\lambda t \mathop{{}\mathbb{E}}_{}U_1
+$$
+thus $Z$ is integrable and
+$$
+\mathop{{}\mathbb{E}}_{s}\left( Z_{t}-\lambda t \mathop{{}\mathbb{E}}_{}U_1 \right)=\mathop{{}\mathbb{E}}_{s}Z_{t}-\lambda t\mathop{{}\mathbb{E}}_{}U_1=Z_{s}-\lambda s\mathop{{}\mathbb{E}}_{}U_1
+$$
+completes the proof.
+
+
+:::
+
+
+::: {.exercise  name="17"}
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+Note that the $X$ is a cadlag and $[0,t]$ is a close set in  $\mathbb{R}$, thus compact in $\mathbb{R}$. Fix some $\omega \in \Omega$, we can choose a subsequence $\left\{ s_{n} \right\} \subset \mathbb{R}$ of the sequence whose jump is larger than $\epsilon$ s.t. $\lim_{n \to \infty}s_n=s$ for some $s \in [0,t]$ and for each $n$, $s_n \le s_{n+1}$. 
+By the assumption, there exists a $\delta \ge 0$ s.t. when $\left| k-s \right|\le \delta$, $\left| X_k - X_{s-} \right| \le \epsilon / 3$, and $\left| X_{k-} - X_{s-} \right| \le \epsilon / 3$. And as the assumption, for some $n$ s.t. $\left| s_n - s \right| \le \delta$,
+$$
+\left| X_{s_n} - X_{s-} \right| = \left| X_{s_n-} + \Delta X_{s_n} - X_{s-} \right| > 2\epsilon / 3
+$$
+which leads to a contradiction.
+
+By the discussion above, we can just pick $\epsilon = 1 / n$ for each $n$ and note that the set $\left\{ s \in [0,t] : \left| \Delta X_s \right | > 0 \right\} = \bigcup_{n \in \mathbb{N}} \left\{ s \in [0,t] : \left| \Delta X_s \right| > 1 / n \right\}$ and each set of the right side is finite, thus the set of jumps is countable.
+
+:::
+
+
+::: {.exercise  name="18"}
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+By corollary of theorem 36 and theorem 37 [@protter2005stochastic], we have $J^{\varepsilon}$ and $Z-J^{\varepsilon}$ are Lévy, the independency follows from noting
+$$
+\psi_{J^{\varepsilon}}+\psi_{Z-J^{\varepsilon}}=\psi_{Z}
+$$
+in theorem \@ref(thm:levy-Khinchin).
+
+:::
+
+
+
+
+::: {.exercise  name="19"}
+
+
+$\quad$
+
+
+:::
+
+
+::: {.solution}
+
+Let $\tau_{n}=\inf \left\{ t>0:\left| X_{t} \right|>n \right\}$, it's series of stopping times since $(n,\infty)$ is borel. Then let $\sigma_{n}=\tau_{n}\bm{1}_{X_0\le n}$, note
+$$
+\left\{ \sigma_{n}\le t \right\}=\left\{ \tau_n\le t \right\} \cup \left\{ X_0>n \right\}\in \mathcal{F}_{t}
+$$
+hence $\sigma_{n}$ is stopping time. Then by the continuity of $X$, $\left\{ \sigma_{n} \right\}$ justify that $X$ is locally bounded.
+
+:::
+
+
+::: {.exercise  name="24"}
+
+$\quad$
+
+:::
+
+
+
+::: {.exercise  name="25"}
+
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+Fix $\varepsilon$ and $t$, note
+$$
+\left\{ \left| \Delta Z_{t} \right|>\varepsilon \right\}=\bigcup_{n}\bigcap_{n\ge m}\left\{ \left| Z_{t}-Z_{t-\frac{1}{n}} \right|>\varepsilon \right\}
+$$
+hence
+$$
+\begin{aligned}
+\mathop{{}\mathbb{P}}\left\{ \left| \Delta Z_{t} \right|>\varepsilon \right\}&= \mathop{{}\mathbb{P}} \liminf_{n} \left\{  \left| Z_{t}-Z_{t-\frac{1}{n}} \right|>\varepsilon  \right\}
+\\&\le \liminf_{n} \mathop{{}\mathbb{P}}\left\{  \left| Z_{t}-Z_{t-\frac{1}{n}} \right|>\varepsilon   \right\}
+\\&\le \lim_{n \to \infty}\mathop{{}\mathbb{P}}\left\{  \left| Z_{t}-Z_{t-\frac{1}{n}} \right|>\varepsilon  \right\}=0
+\end{aligned}
+$$
+
+:::
+
+# Reference {-}
+

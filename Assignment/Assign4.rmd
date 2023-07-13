@@ -1,0 +1,127 @@
+---
+title: Homework 4
+author:
+  - Xie zejian
+bibliography: references.bib
+date: "Last compiled on `r format(Sys.time(), '%H:%M, %d %B, %Y')`"
+output:
+  bookdown::pdf_document2:
+    toc: false
+    includes:
+      in_header: preamble.tex
+    latex_engine: xelatex
+---
+
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+Let $\sigma_{n}$ be a sequence of random partition tending to identity. By theorem 22 [@protter2005stochastic],
+$$
+\begin{aligned}
+    [M,A]&=M_0A_0+\lim_{n \to \infty} \sum_{i}^{} \left( M^{T_{i+1}^{n}}-M^{T_{i}^{n}} \right) \left( A^{T_{i+1}^{n}}-A^{T^{n}_{i}} \right)
+    \\ & \le 
+    0+\lim_{n \to \infty} \sup _{i} \left| M^{T_{i+1}^{n}} -M^{T^{n}_{i}} \right| \sum_{i}^{} \left| A^{T^{n}_{i+1}}-A^{T_{i}^{n}} \right|=0
+\end{aligned}
+$$
+since $M$ is continuous and $\sum_{i}^{} \left| A^{T^{n}_{i+1}}-A^{T_{i}^{n}} \right|<\infty$ by hypothesis. Similarly,
+$$
+\begin{aligned}
+    [A,A]&=A_0^2+\lim_{n \to \infty} \sum_{i}^{} \left( A^{T_{i+1}^{n}}-A^{T_{i}^{n}} \right) \left( A^{T_{i+1}^{n}}-A^{T^{n}_{i}} \right)
+    \\ & \le 
+    0+\lim_{n \to \infty} \sup _{i} \left| A^{T_{i+1}^{n}} -A^{T^{n}_{i}} \right| \sum_{i}^{} \left| A^{T^{n}_{i+1}}-A^{T_{i}^{n}} \right|=0
+\end{aligned}
+$$
+Thus we conclude that
+$$
+[X,X]=[M,M]+2[M,A]+[A,A]=[M,M]
+$$
+
+
+
+:::
+
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+$X^2$ is $\mathop{{}\mathbb{P}}$ semimartingale and hence $\mathbb{Q}$ semimartingale by theorem 2 [@protter2005stochastic]. By corollary of theorem 15 [@protter2005stochastic], $(X_{\_} \cdot X)^{\mathbb{Q}}$ is indistinguishable from $(X_{\_} \cdot X)^{\mathbb{P}}$, then by definition,
+$$
+[X,X]^{\mathop{{}\mathbb{P}}}=X^2-(X_{\_}\cdot X)^{\mathop{{}\mathbb{P}}}=X^2-(X_{\_} \cdot X)^{\mathbb{Q}}=[X,X ]^{\mathbb{Q}}
+$$
+
+:::
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+By Ito's formula and given SDE,
+$$
+d(\exp ^{\alpha t}X_{t})=\alpha e^{\alpha t}X_{t}dt+e^{\alpha t}dX_{t}=\alpha e^{\alpha t}X_{t}dt+e^{\alpha t}(-\alpha X_{t} dt +\sigma dB_{t})=\sigma e^{\alpha t}d X_{t}
+$$
+integrate yields
+$$
+X_{t}=e^{-\alpha t}\left( X_0+\sigma \int _{0}^{t} e^{as}dB_{s} \right)
+$$
+
+:::
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+By the law of iterated logarithm,
+$$
+\limsup _{t \to \infty} \frac{B_{t}}{t}=0 \text{ a.s. }
+$$
+In particular, for $\text{ a.s. }$ $\omega$, there exists $t_0(\omega)$ $\text{ s.t. }$ $t>t_0(\omega)$ implies $\frac{B_{t}}{t}<\frac{1}{2}-\varepsilon$ for any $\varepsilon \in \left( 0,\frac{1}{2} \right)$. Then
+$$
+\lim_{t \to \infty} \mathcal{E}(B_{t})= \lim_{t \to \infty} \exp \left\{ t \left( \frac{B_{t}}{t}- \frac{1}{2} \right) \right\}\le  \lim_{t \to \infty} e^{-\varepsilon t}=0, \text{ a.s. }
+$$
+
+
+:::
+
+::: {.exercise  name=""}
+
+$\quad$
+
+:::
+
+
+::: {.solution}
+
+$\mathcal{E}(X)^{-1}=\mathcal{E}(-X+[X,X])$ by corollary of theorem 38 [@protter2005stochastic]. This implies that $\mathcal{E}(X)^{-1}$ is the solution of SDE:
+$$
+\mathcal{E}(X)^{-1}_{t}=1+\int _{0}^{t} \mathcal{E}(X)^{-1}_{s-} d(-X_{s}+[X,X ]_{s})
+$$
+as desired.
+
+:::
+
+
+# Reference {-}
+
